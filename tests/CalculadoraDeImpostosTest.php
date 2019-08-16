@@ -1,10 +1,12 @@
 <?php
 
-use App\ICMS;
-use App\ISS;
+use PHPUnit\Framework\TestCase;
+
 use App\Orcamento;
 use App\CalculadoraDeImpostos;
-use PHPUnit\Framework\TestCase;
+use App\ICMS;
+use App\ISS;
+use App\KCV;
 
 class CalculadoraDeImpostosTest extends TestCase
 {
@@ -34,4 +36,17 @@ class CalculadoraDeImpostosTest extends TestCase
 
         $this->assertEquals($valorSaida, $valorCalculado);
     }
+
+
+    public function testCalculaValorComDescontoDeKCV(){
+        
+        $valorSaida     = 100.0;
+        $calculadora    = $this->Calculadora;
+        $valorCalculado = $calculadora->calcula($this->reforma, new KCV());
+
+        $this->assertEquals($valorSaida, $valorCalculado);
+    }
+
+
+
 }
