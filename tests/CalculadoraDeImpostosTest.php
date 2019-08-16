@@ -6,16 +6,29 @@ use PHPUnit\Framework\TestCase;
 
 class CalculadoraDeImpostosTest extends TestCase
 {
+    protected $valorEntrada, $reforma;
+
+    public function setUp(): void {
+        $this->valorEntrada = 500;
+        $this->reforma = new Orcamento($this->valorEntrada);
+    }
+
     public function testCalculaValorComDescontoDeICMS() {
         
-        $valorEntrada = 500;
-        $valorSaida = 25;
-        $retorma = new Orcamento($valorEntrada);
-
-        $calculadora = new CalculadoraDeImpostos();
-        $valorCalculado = $calculadora->calculaICMS($retorma);
+        $valorSaida     = 25;
+        $calculadora    = new CalculadoraDeImpostos();
+        $valorCalculado = $calculadora->calculaICMS($this->reforma);
 
         $this->assertEquals($valorSaida, $valorCalculado);
 
+    }
+
+    public function testCalculaValorComDescontoDeISS(){
+
+        $valorSaida     = 50.0;
+        $calculadora    = new CalculadoraDeImpostos();
+        $valorCalculado = $calculadora->calculaISS($this->reforma);
+
+        $this->assertEquals($valorSaida, $valorCalculado);
     }
 }
