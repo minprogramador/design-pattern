@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class Orcamento
 {
     private $valor;
@@ -8,4 +10,9 @@ class Orcamento
     {
         $this->valor = $valor;
     }
+
+    public function getValor() {
+        return $this->valor;
+    }
+
 }
